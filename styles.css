@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+.header-container {
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.main-container {
+    background-color: beige;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.footer-container {
+    background-color: blanchedalmond;
+}
+
+section {
+    background-color: rgba(211, 187, 176, 0.3);
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding: 2rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+section img {
+    width: 460px;
+    max-height: 26rem;
+    border: 5px solid transparent;
+}
+
+section img:hover {
+    border: 5px solid black;
+    cursor: none;
+}
+
+.results-container {
+    border: 1px solid black;
+}
