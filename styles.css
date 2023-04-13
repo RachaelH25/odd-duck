@@ -14,8 +14,6 @@ h1 {
 
 .main-container {
     background-color: beige;
-    display: flex;
-    flex-direction: row-reverse;
 }
 
 .footer-container {
@@ -48,6 +46,9 @@ section img:hover {
 
 .results-container {
     border: 1px solid black;
+    border-radius: 0.5rem;
     background-color: white;
     margin-left: 1rem;
+    width: 10rem;
+    text-align: center;
 }

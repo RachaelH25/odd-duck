@@ -5,6 +5,8 @@ let resultButton = document.querySelector("section + div");
 let image1 = document.querySelector("section img:first-child");
 let image2 = document.querySelector("section img:nth-child(2)");
 let image3 = document.querySelector("section img:nth-child(3)");
+let chartDestroy = false;
+let blankChart;
 
 let clicks = 0;
 let maxClicksAllowed = 5;
@@ -18,6 +20,7 @@ function Products(name, src) {
     this.name = name;
     this.src = src;
     this.views = 0;
+    this.clicks = 0;
 }
 
 function getRandomNumber() {
@@ -67,8 +70,7 @@ function handleProdClick(event) {
     let clickProd = event.target.alt;
     for (let i = 0; i < state.allProductsArray.length; i++) {
         // console.log("for 1");
-        if (clickProd === state.allProductsArray.length[i]) {
-            // removed .name after bracket on line 59
+        if (clickProd === state.allProductsArray[i].name) {
             state.allProductsArray[i].clicks++;
             break;
         }
@@ -93,6 +95,10 @@ function handleProdClick(event) {
 // }
 
 function renderChart() {
+    if (chartDestroy == true) {
+        blankChart.destroy();
+    }
+
     const labelArray = [];
     const clicksArray = [];
     const viewsArray = [];
@@ -103,31 +109,33 @@ function renderChart() {
         clicksArray.push(thisProd.clicks);
         viewsArray.push(thisProd.views);
     }
-
+    console.log(clicksArray);
     const data = {
         labels: labelArray,
         datasets: [
             {
                 label: "Views",
                 data: viewsArray,
-                backgroundColor: [
-                    "rgba(255, 99, 132, 0.2)",
-                    "rgba(255, 159, 64, 0.2)",
-                    "rgba(255, 205, 86, 0.2)",
-                    "rgba(75, 192, 192, 0.2)",
-                    "rgba(54, 162, 235, 0.2)",
-                    "rgba(153, 102, 255, 0.2)",
-                    "rgba(201, 203, 207, 0.2)",
-                ],
-                borderColor: [
-                    "rgb(255, 99, 132)",
-                    "rgb(255, 159, 64)",
-                    "rgb(255, 205, 86)",
-                    "rgb(75, 192, 192)",
-                    "rgb(54, 162, 235)",
-                    "rgb(153, 102, 255)",
-                    "rgb(201, 203, 207)",
-                ],
+                backgroundColor: "whitesmoke",
+                // [
+                //     "rgba(255, 99, 132, 0.2)",
+                //     "rgba(255, 159, 64, 0.2)",
+                //     "rgba(255, 205, 86, 0.2)",
+                //     "rgba(75, 192, 192, 0.2)",
+                //     "rgba(54, 162, 235, 0.2)",
+                //     "rgba(153, 102, 255, 0.2)",
+                //     "rgba(201, 203, 207, 0.2)",
+                // ],
+                borderColor: "black",
+                // [
+                //     "rgb(255, 99, 132)",
+                //     "rgb(255, 159, 64)",
+                //     "rgb(255, 205, 86)",
+                //     "rgb(75, 192, 192)",
+                //     "rgb(54, 162, 235)",
+                //     "rgb(153, 102, 255)",
+                //     "rgb(201, 203, 207)",
+                // ],
                 borderWidth: 2,
             },
             {
@@ -168,8 +176,9 @@ function renderChart() {
         },
     };
     const canvasChart = document.getElementById("myGraph");
-    // canvasChart.destroy();
     new Chart(canvasChart, config);
+    blankChart = new Chart(canvasChart, config);
+    chartDestroy = true;
 }
 
 let bag = new Products("r2d2bag", "images/bag.jpg");
