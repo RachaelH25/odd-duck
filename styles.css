@@ -6,7 +6,10 @@
     background-color: antiquewhite;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+}
+h1 {
+    font-size: 5rem;
+    margin: 3.5rem 2rem;
 }
 
 .main-container {
@@ -45,4 +48,6 @@ section img:hover {
 
 .results-container {
     border: 1px solid black;
+    background-color: white;
+    margin-left: 1rem;
 }
